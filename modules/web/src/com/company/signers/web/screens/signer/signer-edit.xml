@@ -16,8 +16,8 @@
         <form id="form" dataContainer="signerDc">
             <column width="250px">
                 <textField id="nameField" property="name"/>
-                <textField id="surnameField" property="surname"/>
                 <textField id="midllenameField" property="midllename"/>
+                <textField id="surnameField" property="surname"/>
                 <textField id="organizationField" property="organization"/>
                 <textField id="dateField" property="date"/>
             </column>

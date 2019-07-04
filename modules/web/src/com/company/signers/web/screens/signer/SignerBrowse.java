@@ -8,4 +8,5 @@ import com.company.signers.entity.Signer;
 @LookupComponent("signersTable")
 @LoadDataBeforeShow
 public class SignerBrowse extends StandardLookup<Signer> {
+
 }

@@ -10,8 +10,8 @@ create table SIGNERS_SIGNER (
     DELETED_BY varchar(50),
     --
     NAME varchar(255) not null,
-    SURNAME varchar(255) not null,
     MIDLLENAME varchar(255) not null,
+    SURNAME varchar(255) not null,
     ORGANIZATION varchar(255) not null,
     DATE_ varchar(255) not null,
     --

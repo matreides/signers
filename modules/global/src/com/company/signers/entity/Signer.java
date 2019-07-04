@@ -1,14 +1,18 @@
 package com.company.signers.entity;
 
 import com.haulmont.cuba.core.entity.StandardEntity;
+import com.haulmont.cuba.core.entity.annotation.Listeners;
+import com.haulmont.cuba.core.entity.annotation.PublishEntityChangedEvents;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+@PublishEntityChangedEvents
 @Table(name = "SIGNERS_SIGNER")
 @Entity(name = "signers_Signer")
+@Listeners("signers_SignerEventListener")
 public class Signer extends StandardEntity {
     private static final long serialVersionUID = -3879742723859709191L;
 
@@ -17,12 +21,12 @@ public class Signer extends StandardEntity {
     protected String name;
 
     @NotNull
-    @Column(name = "SURNAME", nullable = false)
-    protected String surname;
-
-    @NotNull
     @Column(name = "MIDLLENAME", nullable = false)
     protected String midllename;
+
+    @NotNull
+    @Column(name = "SURNAME", nullable = false)
+    protected String surname;
 
     @NotNull
     @Column(name = "ORGANIZATION", nullable = false)
@@ -40,9 +44,7 @@ public class Signer extends StandardEntity {
         this.date = date;
     }
 
-    public String getOrganization() {
-        return organization;
-    }
+    public String getOrganization() { return organization; }
 
     public void setOrganization(String organization) {
         this.organization = organization;
