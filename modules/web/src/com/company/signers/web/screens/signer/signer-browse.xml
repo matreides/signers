@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="signersTable"
+        messagesPack="com.company.signers.web.screens.signer">
+    <data readOnly="true">
+        <collection id="signersDc"
+                    class="com.company.signers.entity.Signer"
+                    view="_local">
+            <loader id="signersDl">
+                <query>
+                    <![CDATA[select e from signers_Signer e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="signersTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="signersTable"
+                dataLoader="signersDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="signersTable"
+                    width="100%"
+                    dataContainer="signersDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="surname"/>
+                <column id="midllename"/>
+                <column id="organization"/>
+                <column id="date"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="signersTable.create"/>
+                <button id="editBtn" action="signersTable.edit"/>
+                <button id="removeBtn" action="signersTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>
