@@ -12,11 +12,6 @@ import java.util.UUID;
 @Component("signers_SignerEventListener")
 public class SignerEventListener implements BeforeInsertEntityListener<Signer>, BeforeUpdateEntityListener<Signer> {
 
-    @EventListener
-    private void beforeCommit(EntityChangedEvent<Signer, UUID> event) {
-
-    }
-
     @Override
     public void onBeforeInsert(Signer entity, EntityManager entityManager) {
         entity.setName(Encrypt(entity.getName()));
@@ -26,10 +21,17 @@ public class SignerEventListener implements BeforeInsertEntityListener<Signer>, 
         entity.setDate(Encrypt(entity.getDate()));
     }
 
+
     @Override
     public void onBeforeUpdate(Signer entity, EntityManager entityManager) {
-
+        entity.setName(Encrypt(entity.getName()));
+        entity.setSurname(Encrypt(entity.getSurname()));
+        entity.setMidllename(Encrypt(entity.getMidllename()));
+        entity.setOrganization(Encrypt(entity.getOrganization()));
+        entity.setDate(Encrypt(entity.getDate()));
     }
+
+
 
     private String Encrypt(String string){return (new StringBuilder(string).reverse()).toString();}
 }

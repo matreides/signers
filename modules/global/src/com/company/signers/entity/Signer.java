@@ -1,5 +1,6 @@
 package com.company.signers.entity;
 
+import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.Listeners;
 import com.haulmont.cuba.core.entity.annotation.PublishEntityChangedEvents;
@@ -9,10 +10,14 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+//TODO Найти метод шифрования и дешефрования строк
+//TODO Расшифровывать данные после вставки, для соответствующих пользователей
+
 @PublishEntityChangedEvents
 @Table(name = "SIGNERS_SIGNER")
 @Entity(name = "signers_Signer")
 @Listeners("signers_SignerEventListener")
+@NamePattern("%s|name")
 public class Signer extends StandardEntity {
     private static final long serialVersionUID = -3879742723859709191L;
 
