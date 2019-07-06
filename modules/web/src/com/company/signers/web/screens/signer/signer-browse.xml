@@ -33,7 +33,7 @@
             </actions>
             <columns>
                 <column id="name"/>
-                <column id="midllename"/>
+                <column id="middlename"/>
                 <column id="surname"/>
                 <column id="organization"/>
                 <column id="date"/>

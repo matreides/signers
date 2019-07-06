@@ -1,6 +1,5 @@
 package com.company.signers.web.screens.signer;
 
-import com.haulmont.cuba.gui.model.CollectionContainer;
 import com.haulmont.cuba.gui.model.InstanceContainer;
 import com.haulmont.cuba.gui.screen.*;
 import com.company.signers.entity.Signer;
@@ -29,14 +28,23 @@ public class SignerEdit extends StandardEditor<Signer> {
     @Subscribe
     private void onAfterShow(AfterShowEvent event) {
         if(signerDc.getItem().getName() != null && !Collections.disjoint(userSession.getRoles(),AllowedRoles)) {
-            Signer s = signerDc.getItem();
-            s.setDate(Decrypt(s.getDate()));
-            s.setName(Decrypt(s.getName()));
-            s.setMidllename(Decrypt(s.getMidllename()));
-            s.setSurname(Decrypt(s.getSurname()));
-            s.setOrganization(Decrypt(s.getOrganization()));
-            signerDc.setItem(s);
+            signerDc.setItem(DecryptEntity((signerDc.getItem())));
         }
+    }
+
+    @Subscribe
+    private void onBeforeClose(BeforeCloseEvent event) {
+        if(signerDc.getItem().getName() != null && !Collections.disjoint(userSession.getRoles(),AllowedRoles))
+            signerDc.setItem(DecryptEntity(signerDc.getItem()));
+    }
+
+    private Signer DecryptEntity(Signer entity){
+        entity.setDate(Decrypt(entity.getDate()));
+        entity.setName(Decrypt(entity.getName()));
+        entity.setMiddlename(Decrypt(entity.getMiddlename()));
+        entity.setSurname(Decrypt(entity.getSurname()));
+        entity.setOrganization(Decrypt(entity.getOrganization()));
+        return entity;
     }
 
     private String Decrypt(String string){

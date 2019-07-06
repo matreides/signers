@@ -3,7 +3,6 @@ package com.company.signers.entity;
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.Listeners;
-import com.haulmont.cuba.core.entity.annotation.PublishEntityChangedEvents;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,9 +10,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 //TODO Найти метод шифрования и дешефрования строк
-//TODO Расшифровывать данные после вставки, для соответствующих пользователей
+//TODO Уточнить доступ у руководителя
 
-@PublishEntityChangedEvents
 @Table(name = "SIGNERS_SIGNER")
 @Entity(name = "signers_Signer")
 @Listeners("signers_SignerEventListener")
@@ -26,8 +24,8 @@ public class Signer extends StandardEntity {
     protected String name;
 
     @NotNull
-    @Column(name = "MIDLLENAME", nullable = false)
-    protected String midllename;
+    @Column(name = "MIDDLENAME", nullable = false)
+    protected String middlename;
 
     @NotNull
     @Column(name = "SURNAME", nullable = false)
@@ -55,12 +53,12 @@ public class Signer extends StandardEntity {
         this.organization = organization;
     }
 
-    public String getMidllename() {
-        return midllename;
+    public String getMiddlename() {
+        return middlename;
     }
 
-    public void setMidllename(String midllename) {
-        this.midllename = midllename;
+    public void setMiddlename(String middlename) {
+        this.middlename = middlename;
     }
 
     public String getSurname() {
