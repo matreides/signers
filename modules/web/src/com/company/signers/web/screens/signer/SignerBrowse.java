@@ -33,20 +33,9 @@ public class SignerBrowse extends StandardLookup<Signer> {
             CollectionContainer<Signer> CC =signersDl.getContainer();
             List<Signer> SignersList = CC.getItems();
             for(Signer s: SignersList) {
-                s.setDate(Decrypt(s.getDate()));
-                s.setName(Decrypt(s.getName()));
-                s.setMiddlename(Decrypt(s.getMiddlename()));
-                s.setSurname(Decrypt(s.getSurname()));
-                s.setOrganization(Decrypt(s.getOrganization()));
+                s.Decrypt();
             }
         }
 
     }
-
-
-
-    private String Decrypt(String string){
-        return (new StringBuilder(string).reverse()).toString();
-    }
-
 }

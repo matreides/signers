@@ -27,30 +27,20 @@ public class SignerEdit extends StandardEditor<Signer> {
 
     @Subscribe
     private void onAfterShow(AfterShowEvent event) {
-        if(signerDc.getItem().getName() != null && !Collections.disjoint(userSession.getRoles(),AllowedRoles)) {
-            signerDc.setItem(DecryptEntity((signerDc.getItem())));
-        }
+        DecryptEntity();
     }
 
     @Subscribe
     private void onBeforeClose(BeforeCloseEvent event) {
-        if(signerDc.getItem().getName() != null && !Collections.disjoint(userSession.getRoles(),AllowedRoles))
-            signerDc.setItem(DecryptEntity(signerDc.getItem()));
+        DecryptEntity();
     }
 
-    private Signer DecryptEntity(Signer entity){
-        entity.setDate(Decrypt(entity.getDate()));
-        entity.setName(Decrypt(entity.getName()));
-        entity.setMiddlename(Decrypt(entity.getMiddlename()));
-        entity.setSurname(Decrypt(entity.getSurname()));
-        entity.setOrganization(Decrypt(entity.getOrganization()));
-        return entity;
+    private void DecryptEntity(){
+        Signer s = signerDc.getItem();
+        if(s.getName() != null && !Collections.disjoint(userSession.getRoles(),AllowedRoles)) {
+            s.Decrypt();
+        }
     }
-
-    private String Decrypt(String string){
-        return (new StringBuilder(string).reverse()).toString();
-    }
-
 
 
 }
