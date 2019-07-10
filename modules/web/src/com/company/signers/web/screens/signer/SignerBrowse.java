@@ -17,6 +17,7 @@ import java.util.List;
 @LoadDataBeforeShow
 public class SignerBrowse extends StandardLookup<Signer> {
 
+    //Список ролей, которые могут видеть расшифрованый текст
     private List<String> AllowedRoles = Arrays.asList("Decrypt Reader","Administrators");
 
     @Inject
@@ -25,7 +26,8 @@ public class SignerBrowse extends StandardLookup<Signer> {
     private UserSession userSession;
 
 
-
+    //После отображения страницы,проверяет роли пользователя и для соответсвующих ролей расшифровывает
+    //сузности в контейнере
     @Subscribe
     private void onAfterShow(AfterShowEvent event) {
         if(!Collections.disjoint(userSession.getRoles(),AllowedRoles)) {
