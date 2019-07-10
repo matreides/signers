@@ -39,7 +39,10 @@ public class SignerEdit extends StandardEditor<Signer> {
             try{
             DecryptEntity();
             }
-        catch (IllegalArgumentException e){}
+        catch (IllegalArgumentException e){
+                //(Костыль для отмены шифрования в случае не сохранения изменений в редакторе)
+                //Исключение вылетает в случае отмены редактирования и не сохрания текста
+        }
 
     }
 
@@ -48,7 +51,7 @@ public class SignerEdit extends StandardEditor<Signer> {
     //Метод проверяет
     //1) наличие сущности в контейнере
     //2) соответсвие роли пользователя
-    //и после этого расшифровывает сущность
+    //и после этого расшифровывает сущностьщ
     private void DecryptEntity(){
         Signer s = signerDc.getItem();
         if(s.getName() != null && !Collections.disjoint(userSession.getRoles(),AllowedRoles)) {
